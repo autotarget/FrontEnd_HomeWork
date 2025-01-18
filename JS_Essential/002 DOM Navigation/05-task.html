@@ -49,7 +49,7 @@
              Компанії користувачів з найбільшим балансом – параграф з id greatestBalanceCompanyOutput.
              Компанії користувачів з найменшим балансом – параграф з id lowestBalanceCompanyOutput.
              */
-             // масив згенерований за допомогою https://next.json-generator.com/.
+            // масив згенерований за допомогою https://next.json-generator.com/.
             let users = [
                 {
                     balance: '1250.89',
@@ -487,9 +487,18 @@
                 }
             ];
 
+            let emailOutput = document.querySelector("#emailAddressesOutput");
+            let maxFriends = document.querySelector("#greatesFriendsCountOutput");
+            let greatestBalance = document.querySelector("#greatestBalanceCompanyOutput");
+            let lowestBalance = document.querySelector("#lowestBalanceCompanyOutput");
+
             function showAllEmails() {
                 console.log("Електронні адреси користувачів:")
-                users.forEach(user => console.log(user.email));
+                users.forEach(user => {
+                    emailOutput.innerHTML += `${user.email}<br>`;
+                    console.log(user.email);
+                });
+
             }
 
             function showHigestFriendCount() {
@@ -504,7 +513,10 @@
 
                 users
                     .filter(user => user.friends.length == max)
-                    .forEach(user => console.log(user.name.first + " " + user.name.last));
+                    .forEach(user => {
+                        maxFriends.innerHTML += `"${user.name.first} ${user.name.last}"<br>`;
+                        console.log(user.name.first + " " + user.name.last);
+                    });
             }
 
             function showMinMaxBalance() {
@@ -523,12 +535,19 @@
                 console.log("Компанії користувачів із найбільшим балансом:")
                 users
                     .filter(user => user.balance == maxBalance)
-                    .forEach(user => console.log(user.company));
+                    .forEach(user => {
+                        greatestBalance.innerHTML += user.company;
+                        console.log(user.company);
+                    });
+
 
                 console.log("Компанії користувачів із найменшим балансом:")
                 users
                     .filter(user => user.balance == minBalance)
-                    .forEach(user => console.log(user.company));
+                    .forEach(user => {
+                        lowestBalance.innerHTML += user.company;
+                        console.log(user.company);
+                    });
             }
 
             showAllEmails();

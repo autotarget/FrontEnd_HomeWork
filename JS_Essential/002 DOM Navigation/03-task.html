@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +17,13 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
     </style>
 </head>
+
 <body>
     <table id="statsTable">
         <tr>
@@ -75,6 +78,43 @@
         У div з id result виведіть повідомлення "Відділ 1 зробив більше продажів" або "Відділ 2 зробив більше продажів" на основі раніше обчислених значень у рядку "Разом".
         Використовуйте будь-які методи, які були розглянуті на попередніх уроках.
         */
+        let table = document.querySelector("#statsTable");
+        let result = document.querySelector("#result");
+        let tableRowLength = table.rows[0].cells.length;
+        let row = document.createElement("tr");
+        let text = document.createTextNode("Всего");
+        let td = [];
+        let rows = table.rows;
+        
+
+        function getSum(index) {
+            let sum = 0;
+            for (let i = 1; i < rows.length - 1; i++) {
+                let currentCell = rows[i].cells[index].textContent;
+                sum += Number(currentCell);
+            }
+            return sum;
+        }
+
+        for (let i = 0; i < tableRowLength; i++) {
+            td[i] = document.createElement("td");
+            row.appendChild(td[i]);
+        }
+
+        table.appendChild(row);
+        td[0].appendChild(text);
+
+        for (let i = 1; i < tableRowLength; i++) {
+            let sum = 0;
+            sum = getSum(i);
+            td[i].textContent = sum;
+        }
+
+        if (Number(td[1].textContent) > Number(td[2].textContent))
+            result.textContent = "Відділ 1 зробив більше продажів";
+
+        else result.textContent = "Відділ 2 зробив більше продажів";
     </script>
 </body>
+
 </html>
