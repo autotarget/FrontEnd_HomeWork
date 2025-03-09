@@ -55,6 +55,11 @@
         </div>
 
         <div class="form-group">
+            <label for="quantity">Кількість на складі</label>
+            <input type="text" id="quantity" name="quantity">
+        </div>
+
+        <div class="form-group">
             <label for="price">Валюта</label>
             <input type="radio" id="currency" name="currency" value="USD" checked> USD
             <input type="radio" id="currency" name="currency" value="EUR"> EUR
@@ -80,7 +85,8 @@
         saveButton.addEventListener("click", function () {
             addRow(productForm.name.value,
                 productForm.price.value,
-                productForm.currency.value);
+                productForm.currency.value,
+            productForm.quantity.value);
 
             for (let i = 0; i < productForm.elements.length; i++) {
                 const element = productForm.elements[i];
@@ -88,11 +94,13 @@
             }
         });
 
-        function addRow(name, price, currency) {
+        function addRow(name, price, currency, quantity) {
             let tr = document.createElement("tr");
             tr.insertAdjacentHTML("beforeend", `<td>${name}</td>`);
             tr.insertAdjacentHTML("beforeend", `<td>${price}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${quantity}</td>`);
             tr.insertAdjacentHTML("beforeend", `<td>${currency}</td>`);
+            
             productsTable.append(tr);
         }
 

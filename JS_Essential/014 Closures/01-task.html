@@ -14,8 +14,9 @@
         Завдання:
         Перепишіть код так, щоб він працював у будь-якому середовищі виконання (браузер, node.js тощо).
         */
-        if (!window.calc) {
-            window.calc = function (x, y) {
+     
+        if (!globalThis.calc) {
+            globalThis.calc = function (x, y) {
                 alert(x + y);
             }
         }

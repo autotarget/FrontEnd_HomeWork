@@ -15,17 +15,32 @@
         Перепишіть цей код на використання класів замість функцій-конструкторів.
         */
 
-        function Car(model, yaer) {
-            this.yaer = yaer;
-            this.model = model;
-        }
+        // function Car(model, yaer) {
+        //     this.yaer = yaer;
+        //     this.model = model;
+        // }
 
-        Car.prototype.showInfo = function () {
-            console.log(this.model + " " + this.yaer);
-        }
+        // Car.prototype.showInfo = function () {
+        //     console.log(this.model + " " + this.yaer);
+        // }
+
+        // let car1 = new Car("Audi", 2018);
+        // car1.showInfo();
+
+        class Car {
+            #model;
+            #year;
+            constructor(model, year) {
+                this.#model = model;
+                this.#year = year;
+            }
+            showCarInfo() {
+                console.log(`Model: ${this.#model},  Year: ${this.#year}`);
+            }
+        };
 
         let car1 = new Car("Audi", 2018);
-        car1.showInfo();
+        car1.showCarInfo();
     </script>
 </body>
 

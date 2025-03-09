@@ -76,11 +76,11 @@
 
     <template id="template">
         <div class="task">
-            <input type="checbox">
-            <p></p>
+            <input type="checkbox">
+            <p>{{text}}</p>
         </div>
     </template>
-
+    <script src="mustache.min.js"></script>
     <script>
         /*
         Завдання:
@@ -91,23 +91,25 @@
         let addTaskButton = document.querySelector("#add-task-btn");
         let startMessage = document.querySelector("#start-message");
         let taskList = document.querySelector(".task-list");
+        let template = document.querySelector("#template").innerHTML;
+        // console.log(template);
 
         addTaskButton.addEventListener("click", addTaskHandler);
         taskList.addEventListener("click", changeTaskState);
 
         function createTask(text) {
-            let div = document.createElement("div");
-            div.classList.add("task");
+            let div = Mustache.render(template, {text});
+            // let div = document.createElement("div");
+            // div.classList.add("task");
 
-            let input = document.createElement("input");
-            input.type = "checkbox";
+            // let input = document.createElement("input");
+            // input.type = "checkbox";
 
-            let p = document.createElement("p");
-            p.innerText = text;
+            // let p = document.createElement("p");
+            // p.innerText = text;
 
-            div.append(input);
-            div.append(p);
-
+            // div.append(input);
+            // div.append(p);
             return div;
         }
 
@@ -127,9 +129,10 @@
         function addTaskHandler() {
             if (taskNameInput.value) {
                 if (!startMessage.hidden) startMessage.hidden = true;
-
-                let newTask = createTask(taskNameInput.value);
-                taskList.append(newTask);
+                // createTask(taskNameInput.value);
+                 let newTask = createTask(taskNameInput.value);
+                // taskList.append(newTask);
+                taskList.insertAdjacentHTML("beforeend", newTask)
                 taskNameInput.value = "";
             } else {
                 alert("введіть ім'я завдань");

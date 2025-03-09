@@ -46,6 +46,8 @@
         }
 
         .input-panel {
+            display: flex;
+            gap: 20px;
             width: 500px;
             margin: 8px;
             padding: 2px;
@@ -61,6 +63,10 @@
             padding-left: 4px;
             width: 68%;
         }
+
+        .invisible {
+            display: none;
+        }
     </style>
 </head>
 
@@ -68,6 +74,8 @@
     <div class="input-panel">
         <input type="text" id="task-name-input">
         <button id="add-task-btn">Додати завдання</button>
+        <button id="show-undone-btn">Показать выполненные</button>
+        <button id="show-all-btn">Показать все</button>
     </div>
     <div class="task-list">
         <p id="start-message">Немає нових завдань</p>
@@ -89,9 +97,14 @@
         let addTaskButton = document.querySelector("#add-task-btn");
         let startMessage = document.querySelector("#start-message");
         let taskList = document.querySelector(".task-list");
+        let showUndoneBtn = document.querySelector("#show-undone-btn");
+        let showAllBtn = document.querySelector("#show-all-btn");
         let tasks = [];
 
+
         addTaskButton.addEventListener("click", addTaskHandler);
+        showUndoneBtn.addEventListener("click", showUndoneTasksHandler);
+        showAllBtn.addEventListener("click", showAllTasksHandler);
 
         taskNameInput.addEventListener("keydown", function (e) {
             if (e.code == "Enter") addTaskHandler();
@@ -100,15 +113,25 @@
         function addTaskHandler() {
             if (taskNameInput.value) {
                 if (!startMessage.hidden) startMessage.hidden = true;
-
                 let newTask = new Task(taskNameInput.value);
                 newTask.createIn(taskList);
-                tasks.push(newTask);
-
+                tasks.push(newTask);           
                 taskNameInput.value = "";
             } else {
                 alert("введіть ім'я завдання");
             }
+        }
+
+        function showUndoneTasksHandler() {
+            taskList.innerHTML = "";
+            tasks
+                .filter(task => !task.isDone)
+                .forEach(task => task.createIn(taskList));
+        };
+
+        function showAllTasksHandler(){
+            taskList.innerHTML = "";
+            tasks.forEach(task => task.createIn(taskList));
         }
 
         class Task {

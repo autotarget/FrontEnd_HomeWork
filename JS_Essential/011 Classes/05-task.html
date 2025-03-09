@@ -31,9 +31,9 @@
             <p>місяць {{month}}</p>
             <p>сума {{amount}}</p>
             <ul></ul>
-                {{#users}} <!-- початок циклу для виведення масиву users -->
-                <li>{{.}}</li> <!-- . - поточний елемент масиву -->
-                {{/users}} <!-- конец цикла -->
+            {{#users}} <!-- початок циклу для виведення масиву users -->
+            <li>{{.}}</li> <!-- . - поточний елемент масиву -->
+            {{/users}} <!-- конец цикла -->
             </ul>
         </div>
     </template>
@@ -48,6 +48,7 @@
             Створіть масив екземплярів класу MonthReport зі значеннями, які зараз розташовані у масиві source.
             Пройдіть циклом по масиву. На кожному екземплярі класу MonthReport викличте метод render.
         */
+
 
         let source = [
             {
@@ -66,15 +67,39 @@
             }
         ];
 
-        let template = document.querySelector("#monthReport").innerHTML;
-        let output = document.querySelector("#output");
+        class MonthReport {
+            constructor(month, amount, users) {
+                this.month = month;
+                this.amount = amount;
+                this.users = users;
+            }
 
-        document.querySelector("button").addEventListener("click", function () {
-            for (let i = 0; i < source.length; i++) {
-                const monthData = source[i];
-                let html = Mustache.render(template, monthData);
+            render(data) {
+                let html = Mustache.render(template, data);
                 output.insertAdjacentHTML("beforeend", html);
             }
+        }
+
+        let template = document.querySelector("#monthReport").innerHTML;
+        let output = document.querySelector("#output");
+        let monthReports = [];
+
+        // document.querySelector("button").addEventListener("click", function () {
+        //     for (let i = 0; i < source.length; i++) {
+        //         const monthData = source[i];
+        //         let html = Mustache.render(template, monthData);
+        //         output.insertAdjacentHTML("beforeend", html);
+        //     }
+        // });
+
+        document.querySelector("button").addEventListener("click", function () {
+            monthReports.forEach(MonthReport => {
+                MonthReport.render(MonthReport);
+            });
+        });
+
+        source.forEach(item => {
+            monthReports.push(new MonthReport(item.month, item.amount, item.users));
         });
     </script>
 </body>

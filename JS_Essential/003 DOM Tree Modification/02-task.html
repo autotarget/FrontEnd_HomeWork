@@ -15,19 +15,21 @@
 
 <body>
     Робочі дні
-    <div></div>
+    <div id="work"></div>
 
     Вихідні дні
-    <div></div>
+    <div id="weekend"></div>
 
     <script>
-       /*
-        Завдання:
-        Використовуючи параграфи, виведіть усі робочі дні тижня у div, який розташований після фрази "Робочі дні",
-        виведіть усі вихідні дні тижня після фрази "Вихідні дні".
-        Можна внести до розмітки відповідні зміни, щоб спростити завдання пошуку необхідних div.
-        Створюйте параграфи за допомогою перебору масиву days. У параграфі поміщайте значення властивості name.
-        */
+        /*
+         Завдання:
+         Використовуючи параграфи, виведіть усі робочі дні тижня у div, який розташований після фрази "Робочі дні",
+         виведіть усі вихідні дні тижня після фрази "Вихідні дні".
+         Можна внести до розмітки відповідні зміни, щоб спростити завдання пошуку необхідних div.
+         Створюйте параграфи за допомогою перебору масиву days. У параграфі поміщайте значення властивості name.
+         */
+        let workDaysOutput = document.querySelector("#work");
+        let weekendsOutput = document.querySelector("#weekend");
 
         let days = [{ name: "Sunday", isWorkDay: false },
         { name: "Monday", isWorkDay: true },
@@ -36,6 +38,17 @@
         { name: "Thursday", isWorkDay: true },
         { name: "Friday", isWorkDay: true },
         { name: "Saturday", isWorkDay: false }];
+
+        days.forEach(day => {
+            let p = document.createElement('p');
+            p.innerHTML = day.name;
+            if (day.isWorkDay) {
+                workDaysOutput.appendChild(p);
+            }
+            else {   
+                weekendsOutput.appendChild(p);
+            }
+        });
     </script>
 </body>
 

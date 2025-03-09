@@ -11,8 +11,8 @@
 <body>
     <template id="template">
         <div>
-           Назва книги: <span id="titlePlaceholder"></span> <br />
-            Автор: <span id="authorPlaceholder"></span>
+            Назва книги: <span id="titlePlaceholder">{{title}}</span> <br />
+            Автор: <span id="authorPlaceholder">{{author}}</span>
             <hr />
         </div>
     </template>
@@ -37,7 +37,15 @@
             {
                 title: "Секрети JavaScript ніндзя",
                 author: "Секрети JavaScript ніндзя"
+            }
         ];
+        let template = document.querySelector('#template').innerHTML;
+
+        books.forEach(book => {
+            let rendered = Mustache.render(template, book);
+            document.body.insertAdjacentHTML("beforeend", rendered);
+        });
+
     </script>
 </body>
 

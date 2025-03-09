@@ -23,7 +23,7 @@
     <div class="car-info" id="placeholder1"></div>
     <div class="car-info" id="placeholder2"></div>
     <div class="car-info" id="placeholder3"></div>
-    
+
     <script>
         /*
         Завдання:
@@ -33,11 +33,60 @@
         редагування значення властивості HTML напряму.
         */
 
-        function Car(image, manufacturer) {
-            this.image = image;
-            this.manufacturer = manufacturer;
-            this.html = `<img src="images/${this.image}" /><br />Виробник: ${this.manufacturer}<br />`;
+        // function Car(image, manufacturer) {
+        //     this.image = image;
+        //     this.manufacturer = manufacturer;
+        //     this.html = `<img src="images/${this.image}" /><br />Виробник: ${this.manufacturer}<br />`;
+        // }
+
+        // let car1 = new Car("audi-a6-250.jpg", "Audi");
+        // let car2 = new Car("jaguar-x-type-250.jpg", "Jaguar");
+        // let car3 = new Car("porsche-carrera-911-250.jpg", "Porsce");
+
+        // let placeholder1 = document.querySelector("#placeholder1");
+        // let placeholder2 = document.querySelector("#placeholder2");
+        // let placeholder3 = document.querySelector("#placeholder3");
+
+        // placeholder1.innerHTML = car1.html;
+        // placeholder2.innerHTML = car2.html;
+        // placeholder3.innerHTML = car3.html;
+
+        class Car {
+            #image;
+            #manufacturer;
+            #html;
+            constructor(image, manufacturer) {
+                this.#image = image;
+                this.#manufacturer = manufacturer;
+                this.#html = `<img src="${this.imagePath}" /><br />Виробник: ${this.getManufacturer}<br />`;
+            }
+            get imagePath() {
+                return `images/${this.#image}`;
+            }
+
+            set setImage(newimage){
+                return this.#image = newimage;
+            }
+
+            set setManufacturer(value){
+                return this.#manufacturer = value;
+            }
+
+            get getManufacturer(){
+                return this.#manufacturer;
+            }
+            get getHtml(){
+                return this.#html;
+            }
+
+            showCarInfo(){
+                return `<img src="${this.imagePath}" /><br />Виробник: ${this.getManufacturer}<br />`;
+            }
         }
+        // let cars = [new Car("audi-a6-250.jpg", "Audi"), new Car("jaguar-x-type-250.jpg", "Jaguar"), new Car("porsche-carrera-911-250.jpg", "Porsce")]
+        // console.log(cars);
+        // let placeholder1 = document.querySelector("#placeholder1");
+        // placeholder1.innerHTML = cars[1].html;
 
         let car1 = new Car("audi-a6-250.jpg", "Audi");
         let car2 = new Car("jaguar-x-type-250.jpg", "Jaguar");
@@ -47,9 +96,15 @@
         let placeholder2 = document.querySelector("#placeholder2");
         let placeholder3 = document.querySelector("#placeholder3");
 
-        placeholder1.innerHTML = car1.html;
-        placeholder2.innerHTML = car2.html;
-        placeholder3.innerHTML = car3.html;
+        placeholder1.innerHTML = car1.getHtml;
+        placeholder2.innerHTML = car2.getHtml;
+        placeholder3.innerHTML = car3.getHtml;;
+
+        // car1.setManufacturer = "BMW";
+        // car1.setImage = "jaguar-x-type-250.jpg";
+        
+        console.log(car1.getManufacturer);
+        placeholder1.innerHTML = car1.showCarInfo();
     </script>
 </body>
 
