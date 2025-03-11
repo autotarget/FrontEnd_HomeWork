@@ -1,0 +1,10 @@
+.mainMenu {
+    padding-right: 15px;
+}
+.menuList {
+    display: flex;
+    gap: 50px;
+}
+.menuList a {
+    color: #774e2e;  
+}

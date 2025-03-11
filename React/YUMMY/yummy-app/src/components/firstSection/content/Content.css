@@ -1,0 +1,42 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 575px;
+    height: 474px;
+  
+}
+
+.content_Title {
+
+    font-weight: 800;
+    font-size: 110px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    color: #f37f34;
+    text-align: left;
+}
+
+.content_Title span {
+
+    color: #774e2e;
+}
+
+.content_Text {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.contentBtn {
+    width: 343px;
+    height: 69px;
+    margin-top: 50px;
+    background: #774e2e;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: #fff;
+    border: none;
+
+}

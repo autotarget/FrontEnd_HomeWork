@@ -1,0 +1,7 @@
+.logo {
+    width: 79px;
+    height: 79px;
+    background-image: url(./../../../assets/img/Logo_Yummy.svg); 
+    padding-left: 15px;
+    background-repeat: no-repeat;
+}

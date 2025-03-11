@@ -1,0 +1,13 @@
+.gallery_Title {
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 110%;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #f37f34;
+}
+
+.gallery_Title span {
+    color: #774e2e;
+}
